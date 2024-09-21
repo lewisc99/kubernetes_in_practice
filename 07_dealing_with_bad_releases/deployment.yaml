@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellok8s
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hellok8s
+  template:
+    metadata:
+      labels:
+        app: hellok8s
+    spec:
+      containers:
+      - image: lewiscontato99/hellok8s:v2 # Still using v2
+        name: hellok8s-container
+        readinessProbe: # New readiness probe
+          periodSeconds: 1
+          successThreshold: 5
+          httpGet:
+            path: /
+            port: 4567
