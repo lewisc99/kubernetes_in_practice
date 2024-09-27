@@ -1,0 +1,24 @@
+kubectl apply -f service.yaml
+kubectl get service hellok8s-svc
+kubectl apply -f deployment.yaml
+
+
+#local environment 
+kubectl port-forward svc/hellok8s-svc 30001:4567
+
+then 
+
+##for production
+curl http://localhost:30001
+# [v3] Hello, Kubernetes, from hellok8s-7f4c57d446-t9ngx!
+
+
+##for production
+curl http://localhost:30001
+# [v3] Hello, Kubernetes, from hellok8s-7f4c57d446-t9ngx!
+
+curl http://localhost:30001
+# [v3] Hello, Kubernetes, from hellok8s-7f4c57d446-985dq!
+
+curl http://localhost:30001
+# [v3] Hello, Kubernetes, from hellok8s-7f4c57d446-t9ngx!
