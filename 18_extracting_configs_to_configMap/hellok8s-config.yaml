@@ -1,0 +1,20 @@
+# This solution works fine in this case where we have only one variable we need to get from the ConfigMap,
+#  but we can imagine how it can start to get tedious if we need to do that for dozens of variables.
+env:
+  - name: VAR1
+    valueFrom:
+      configMapKeyRef:
+        name: hellok8s-config
+        key: VAR1
+
+  - name: VAR2
+    valueFrom:
+      configMapKeyRef:
+        name: hellok8s-config
+        key: VAR2
+
+  - name: VAR3
+    valueFrom:
+      configMapKeyRef:
+        name: hellok8s-config
+        key: VAR3

@@ -1,0 +1,26 @@
+# One thing that we lose when we use envFrom to get all the values from a ConfigMap is the ability to specify
+# the name of the environment variables that will be injected. It will always use the name defined in the ConfigMap.
+# This is usually fine. But if we are injecting the configs from multiple different ConfigMaps, we can have conflicting variable
+# names that would be overridden. To fix that, we can add a prefix to all the variables names imported from each ConfigMap
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellok8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hellok8s
+  template:
+    metadata:
+      labels:
+        app: hellok8s
+    spec:
+      containers:
+      - image: brianstorti/hellok8s:v4
+        name: hellok8s-container
+        envFrom:
+        - configMapRef:
+            name: hellok8s-config
+          prefix: CONFIG_
